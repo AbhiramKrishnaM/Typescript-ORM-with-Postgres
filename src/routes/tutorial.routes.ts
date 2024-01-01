@@ -11,3 +11,5 @@ class TutorialRoutes {
 
   initializeRoutes() {}
 }
+
+export default new TutorialRoutes().router;
