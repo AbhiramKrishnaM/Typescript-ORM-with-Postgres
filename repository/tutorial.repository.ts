@@ -71,9 +71,25 @@ class TutorialRepository implements ITutorialRepository {
     }
   }
 
-  async delete(tutorialId: number): Promise<number> {}
+  async delete(tutorialId: number): Promise<number> {
+    try {
+      const affectedRows = await Tutorial.destroy({
+        where: { id: tutorialId },
+      });
 
-  async deleteAll(): Promise<number> {}
+      return affectedRows;
+    } catch (error) {
+      throw new Error("Failed to delete tutorial!");
+    }
+  }
+
+  async deleteAll(): Promise<number> {
+    try {
+      return await Tutorial.destroy({ where: {}, truncate: false });
+    } catch (error) {
+      throw new Error("Failed to delete Tutorials!");
+    }
+  }
 }
 
 export default new TutorialRepository();
