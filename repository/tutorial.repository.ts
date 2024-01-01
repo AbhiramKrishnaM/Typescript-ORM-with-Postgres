@@ -1,4 +1,4 @@
-import { describe } from "node:test";
+import { Op } from "sequelize";
 import Tutorial from "../models/tutorial.model";
 
 interface ITutorialRepository {
@@ -36,7 +36,16 @@ class TutorialRepository implements ITutorialRepository {
     published: Boolean;
   }): Promise<Tutorial[]> {
     try {
-    } catch (error) {}
+      let condition: SearchCondition = {};
+      if (searchParams?.published) condition.published = true;
+
+      if (searchParams?.title)
+        condition.title = { [Op.like]: `%${searchParams.title}` };
+
+      return await Tutorial.findAll({ where: condition });
+    } catch (error) {
+      throw new Error("Failed to retrieve tutorials");
+    }
   }
 
   async retrieveById(tutorialId: number): Promise<Tutorial | null> {}
