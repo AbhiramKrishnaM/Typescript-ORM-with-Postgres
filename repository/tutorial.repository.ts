@@ -1,3 +1,4 @@
+import { describe } from "node:test";
 import Tutorial from "../models/tutorial.model";
 
 interface ITutorialRepository {
@@ -18,12 +19,25 @@ interface ITutorialRepository {
 }
 
 class TutorialRepository implements ITutorialRepository {
-  async save(tutorial: Tutorial): Promise<Tutorial> {}
+  async save(tutorial: Tutorial): Promise<Tutorial> {
+    try {
+      return await Tutorial.create({
+        title: tutorial.title,
+        description: tutorial.description,
+        published: tutorial.published,
+      });
+    } catch (error) {
+      throw new Error("Failed to create Tutorial!");
+    }
+  }
 
   async retrieveAll(searchParams: {
     title: String;
     published: Boolean;
-  }): Promise<Tutorial[]> {}
+  }): Promise<Tutorial[]> {
+    try {
+    } catch (error) {}
+  }
 
   async retrieveById(tutorialId: number): Promise<Tutorial | null> {}
 
@@ -33,3 +47,5 @@ class TutorialRepository implements ITutorialRepository {
 
   async deleteAll(): Promise<number> {}
 }
+
+export default new TutorialRepository();
