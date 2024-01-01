@@ -48,7 +48,13 @@ class TutorialRepository implements ITutorialRepository {
     }
   }
 
-  async retrieveById(tutorialId: number): Promise<Tutorial | null> {}
+  async retrieveById(tutorialId: number): Promise<Tutorial | null> {
+    try {
+      return await Tutorial.findByPk(tutorialId);
+    } catch (error) {
+      throw new Error("Failed to retrieve tutorials");
+    }
+  }
 
   async update(tutorial: Tutorial): Promise<number> {}
 
