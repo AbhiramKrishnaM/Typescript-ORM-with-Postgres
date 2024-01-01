@@ -56,7 +56,20 @@ class TutorialRepository implements ITutorialRepository {
     }
   }
 
-  async update(tutorial: Tutorial): Promise<number> {}
+  async update(tutorial: Tutorial): Promise<number> {
+    const { id, title, description, published } = tutorial;
+
+    try {
+      const affectedRows = await Tutorial.update(
+        { title, description, published },
+        { where: { id: id } }
+      );
+
+      return affectedRows[0];
+    } catch (error) {
+      throw new Error("Failed to update tutorial");
+    }
+  }
 
   async delete(tutorialId: number): Promise<number> {}
 
