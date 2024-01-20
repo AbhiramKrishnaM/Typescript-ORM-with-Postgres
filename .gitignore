@@ -2,5 +2,5 @@
 .env
 
 # files and folders
-dist
+build
 node_modules
