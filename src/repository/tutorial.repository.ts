@@ -37,6 +37,7 @@ class TutorialRepository implements ITutorialRepository {
   }): Promise<Tutorial[]> {
     try {
       let condition: SearchCondition = {};
+
       if (searchParams?.published) condition.published = true;
 
       if (searchParams?.title)

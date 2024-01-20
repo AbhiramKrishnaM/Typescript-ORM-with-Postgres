@@ -9,7 +9,9 @@ class TutorialRoutes {
     this.initializeRoutes();
   }
 
-  initializeRoutes() {}
+  initializeRoutes() {
+    this.router.get("/", this.controller.findAll);
+  }
 }
 
 export default new TutorialRoutes().router;
