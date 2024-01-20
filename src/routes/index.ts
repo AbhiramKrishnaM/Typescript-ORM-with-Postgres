@@ -4,5 +4,9 @@ import tutorialRoutes from "./tutorial.routes";
 export default class Routes {
   constructor(app: Application) {
     app.use("/api/tutorials", tutorialRoutes);
+
+    app.use("/", (req, res) => {
+      res.send("hello world");
+    });
   }
 }
