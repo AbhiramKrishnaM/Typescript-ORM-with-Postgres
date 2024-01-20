@@ -10,19 +10,26 @@ class TutorialRoutes {
   }
 
   initializeRoutes() {
+    // Create a new Tutorial
     this.router.post("/", this.controller.create);
 
-    this.router.delete("/delete", this.controller.delete);
+    // Retrieve all Tutorials
+    this.router.get("/", this.controller.findAll);
 
-    this.router.delete("/delete-all", this.controller.deleteAll);
+    // Retrieve all published Tutorials
+    this.router.get("/published", this.controller.findAllPublished);
 
-    this.router.post("/find-all", this.controller.findAll);
+    // Retrieve a single Tutorial with id
+    this.router.get("/:id", this.controller.findOne);
 
-    this.router.post("/find-published", this.controller.findAllPublished);
+    // Update a Tutorial with id
+    this.router.put("/:id", this.controller.update);
 
-    this.router.post("/find-one", this.controller.findOne);
+    // Delete a Tutorial with id
+    this.router.delete("/:id", this.controller.delete);
 
-    this.router.put("/update", this.controller.update);
+    // Delete all Tutorials
+    this.router.delete("/", this.controller.deleteAll);
   }
 }
 

@@ -36,8 +36,8 @@ class TutorialRepository implements ITutorialRepository {
   }
 
   async retrieveAll(searchParams: {
-    title: String;
-    published: Boolean;
+    title?: String;
+    published?: Boolean;
   }): Promise<Tutorial[]> {
     try {
       let condition: SearchCondition = {};
