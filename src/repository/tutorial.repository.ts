@@ -18,6 +18,10 @@ interface ITutorialRepository {
   deleteAll(): Promise<number>;
 }
 
+interface SearchCondition {
+  [key: string]: any;
+}
+
 class TutorialRepository implements ITutorialRepository {
   async save(tutorial: Tutorial): Promise<Tutorial> {
     try {
